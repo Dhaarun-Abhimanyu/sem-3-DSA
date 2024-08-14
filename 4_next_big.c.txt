@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+    int n,i;
+    printf("\nEnter no.of elements : ");
+    scanf("%d",&n);
+    int a[n];
+    printf("\nEnter %d elements :\n",n);
+    int big[n];
+    for(i=0;i<n;i++){
+        scanf("%d",&a[i]);
+        big[i] = -1;
+    }
+    int stack[100],sp=-1;
+    for(i=0;i<n;i++){
+        if(sp==-1)
+            stack[++sp] = i;
+        else{
+            if(a[i] > a[stack[sp]]){
+                big[stack[sp]] = a[i];
+                stack[sp] = i;
+                sp--;
+                i--;
+                continue;
+            }
+            else{
+                stack[++sp] = i;
+            }
+        }
+
+    }
+    for(i=0;i<n;i++)
+        printf("\nNext Big of %d : %d",a[i],big[i]);
+    return 0;
+}

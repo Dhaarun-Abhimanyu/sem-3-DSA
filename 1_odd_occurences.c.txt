@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int search(int x[], int target,int size){
+    int i =0;
+    for(i=0;i<size;i++){
+        if(x[i] == target)
+            return i;
+    }
+    return -1;
+}
+int main()
+{
+    int i,size = 1;
+  int *hash = (int*)malloc(sizeof(int));
+  int *key = (int*)malloc(sizeof(int));
+  printf("\nEnter number of  elements : ");
+  int n;
+  scanf("%d",&n);
+  int arr[n];
+  printf("\nEnter %d elements :\n",n);
+  for(i=0;i<n;i++){
+        scanf("%d",&arr[i]);
+        int check = search(hash,arr[i],size) + 1;
+        if(check){
+            *(key+check - 1 )+=1;
+        }
+        else{
+            hash = (int*)realloc(hash, ++size * sizeof(int));
+            key = (int*)realloc(key, size * sizeof(int));
+            key[size-1] = 1;
+            hash[size-1] = arr[i];
+        }
+  }
+   printf("\nOdd occurences : ");
+  for(i =0;i<size;i++){
+        if(key[i] % 2 !=0)
+            printf("%d,",*(hash+i));
+  }
+  return 0;
+}
