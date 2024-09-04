@@ -1,5 +1,17 @@
 #include <stdio.h>
 
+void input(int arr[], int n){
+    int i;
+    for(i=0;i<n;i++)
+        scanf("%d",&arr[i]);
+}
+
+void output(int arr[], int n){
+    int i;
+    for(i=0;i<n;i++)
+        printf("%d,",arr[i]);
+}
+
 int main()
 {
     int n,i,target,index;
